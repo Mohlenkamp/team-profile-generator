@@ -1,0 +1,23 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mohlenkamp/team-profile-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mohlenkamp/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/Mohlenkamp/team-profile-generator#readme",
+  "dependencies": {
+    "inquirer": "^8.1.1",
+    "jest": "^27.0.4"
+  }
+}
