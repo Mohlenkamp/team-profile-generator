@@ -2,7 +2,7 @@ const Manager = require('../lib/Manager.js');
 
 
 test('creates a valid Manager object', () => {
-    const mgnr = new Manager('Dave Jones', '12345', 'Dave.Jones@company.com', "Office 222");
+    const mgnr = new Manager('Dave Jones', '12345', 'Manager', 'Dave.Jones@company.com', "Office 222");
 
     expect(mgnr).toHaveProperty('name');
     expect(mgnr).toHaveProperty('id');
