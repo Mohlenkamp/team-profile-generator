@@ -1,7 +1,32 @@
-const inquirer = require('inquirer');
+// John Mohlenkamp
+// Team Generator - Assignment 10
+// June 20, 2021
+
+// Imports
+
+const inquirer = require('inquirer'); //Inquirer
+const fs = require('fs')  // File system
 const Manager = require('./lib/Manager.js')
 const Engineer = require('./lib/Engineer.js')
 const Intern = require('./lib/Intern.js')
+const generateHTML = require('./lib/generateHTML.js'); // Utility file
+
+// Functions
+
+const writeToFile = fileContent => {
+  return new Promise((resolve, reject) => {
+    fs.writeFile('./dist/index.html', fileContent, err => {
+      if (err) {
+        reject(err);
+        return;
+      }
+
+      resolve({
+        ok: true
+      });
+    });
+  });
+};
 
 const addTeamMember = (role, data, team) =>{
     // This function will take the inquirer data and turn 
@@ -9,8 +34,7 @@ const addTeamMember = (role, data, team) =>{
     // into the team array.
 
  //   console.log("addTeamMember: " + role)
- //   console.log(data)
-    
+ //   console.log(data) 
     switch (role){
         case 'Manager':{
             let employee = new Manager(data.employeeName, data.employeeID, data.employeeEmail, role, data.employeeOffice);
@@ -67,11 +91,13 @@ const managerQuestions = () => {
             type: 'input',
             name: 'employeeEmail',
             message: 'Manager: What is your email address? (Required)',
-            validate: mgrEmail => {
-              if (mgrEmail) {
+ // Only for testing            default: 'mail@mail.com',
+            validate: mgrEmail => { //Forcing email to be valid because of the required mailto: link
+              const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+              if (mgrEmail.match(re)) {
                 return true;
               } else {
-                console.log('You need to enter your email address!');
+                console.log('You need to enter a valid email address!');
                 return false;
               }
             }
@@ -124,11 +150,14 @@ const addEngineer = () => {
         type: 'input',
         name: 'employeeEmail',
         message: 'Engineer: What is the email address of your engineer ? (Required)',
-        validate: engrEmail => {
-          if (engrEmail) {
+// Only for testing        default: 'mail@mail.com',
+        validate: engrEmail => {//Forcing email to be valid because of the required mailto: link
+          //Forcing email to be valid because of the required mailto: link
+          const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          if (engrEmail.match(re)) {
             return true;
           } else {
-            console.log('You need to enter the email address!');
+            console.log('You need to enter a valid email address!');
             return false;
           }
         }
@@ -184,11 +213,13 @@ const addIntern = team => {
             type: 'input',
             name: 'employeeEmail',
             message: 'Intern: What is the email address of your intern? (Required)',
+ // Only for testing           default: 'mail@mail.com',
             validate: intrnEmail => {
-              if (intrnEmail) {
+              const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+              if (intrnEmail.match(re)) {
                 return true;
               } else {
-                console.log('You need to enter your email address!');
+                console.log('You need to enter a valid email address!');
                 return false;
               }
             }
@@ -236,25 +267,26 @@ const promptTeam = team => {
                         }); 
                         break;}
                 case "I'm finished adding to the team" : {
-                   // console.log(team)
-                    generateHTML(team)
+                    console.log("Generating HTML file")
+                    writeToFile(generateHTML(team))
                     break;}
                 default : console.log ('Error in promptTeam switch/case logic');
             }
           })
+          .catch(err => {
+            console.log(err);
+          });
 }
 
-const generateHTML = (teamData) => {
-    {console.log('Need to generate HTML with the data');
-   console.log(teamData)}
-   //todo: html
-}
+// Main Program
 
-// Staring here
 let team = []
 managerQuestions()
     .then (function (data){
         addTeamMember('Manager',data,team)
         promptTeam(team)
         })
+    .catch(err => {
+      console.log(err);
+    });
 

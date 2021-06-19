@@ -15,6 +15,15 @@
         }
         .card {
             height: max-content;
+            margin: 0 auto; 
+            float: none; 
+            margin-bottom: 10px;
+        }
+        .card-header {
+            background-color: blue;
+        }
+        .card-header p{
+            color:white;
         }
     </style>
 </head>
@@ -39,7 +48,7 @@
                         </header>
                         <div class="card-content">
                             <div class="content">
-                                Employee name hsdafkjhakjdfhsakjhfksadhfkljsda
+                                <p>Name: <span>${data.employeeName}</span></p>
                                 <br>
                                 Employee ID
                                 <br>
@@ -50,7 +59,7 @@
                             </div>
                         </div>
                         <footer class="card-footer">
-                            <a href="#" class="card-footer-item">Contact via Email</a>
+                            <a href="mailto:"${data.employeeEmail} class="card-footer-item">Contact via Email</a>
                         </footer>
                     </div>
                 </div>
@@ -74,7 +83,7 @@
                             </div>
                         </div>
                         <footer class="card-footer">
-                            <a href="#" class="card-footer-item">Contact via Email</a>
+                            <a href="mailto:mail@mail.com" class="card-footer-item">Contact via Email</a>
                         </footer>
                     </div>
                 </div>
