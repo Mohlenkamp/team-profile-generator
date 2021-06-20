@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <style type="text/css" media="screen">
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-gap: 0.5em;
+        }
+        .card {
+            height: max-content;
+            margin: 0 auto; 
+            float: none; 
+            margin-bottom: 10px;
+        }
+        .card-header {
+            background-color: blue;
+        }
+        .card-header p{
+            color:white;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="hero is-small is-danger is-fluid">
+        <div class="hero-body has-text-centered">
+            <p class="title">
+                My Team
+            </p>
+        </div>
+    </section>
+    <section class="container">
+        <div class="team section">
+            <div class="columns">
+                <div class="column">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title is-centered">
+                                Employee Role
+                            </p>
+                        </header>
+                        <div class="card-content">
+                            <div class="content">
+                                <p>Name: <span>${data.employeeName}</span></p>
+                                <br>
+                                Employee ID
+                                <br>
+                                etc etc etc
+                                <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
+                                <br>
+                                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                            </div>
+                        </div>
+                        <footer class="card-footer">
+                            <a href="mailto:"${data.employeeEmail} class="card-footer-item">Contact via Email</a>
+                        </footer>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title is-centered">
+                                Employee Role
+                            </p>
+                        </header>
+                        <div class="card-content">
+                            <div class="content">
+                                Employee name hsdafkjhakjdfhsakjhfksadhfkljsda
+                                <br>
+                                Employee ID
+                                <br>
+                                etc etc etc
+                                <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
+                                <br>
+                                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                            </div>
+                        </div>
+                        <footer class="card-footer">
+                            <a href="mailto:mail@mail.com" class="card-footer-item">Contact via Email</a>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+    </section>
+</body>
+
+</html>
